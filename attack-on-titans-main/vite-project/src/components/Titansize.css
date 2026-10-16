@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap');
+
+:root {
+  --void      : #06060a;
+  --ash       : #0e0e13;
+  --bone      : #d4cfc4;
+  --dust      : #7a7570;
+  --red       : #9b1a1a;
+  --gold      : #c4a450;
+  --white     : #f0ece4;
+  --f-display : 'Cinzel Decorative', serif;
+  --f-cinzel  : 'Cinzel', serif;
+  --f-body    : 'IM Fell English', serif;
+}
+
+.ts-section {
+  position : relative;
+}
+
+.ts-sticky {
+  position   : sticky;
+  top        : 0;
+  width      : 100%;
+  height     : 100vh;
+  overflow   : hidden;
+  background : var(--ash);
+
+  /* Shared scale so the figures, the ground line and the Wall Maria
+     reference all agree on one unit. Wall Maria (50 m) = 43vh tall. */
+  --stage-bottom : 12vh;
+  --wall-h       : 43vh;
+  --unit         : calc(var(--wall-h) / 50);
+}
+
+.ts-sky {
+  position   : absolute;
+  inset      : 0;
+  background : linear-gradient(
+    to bottom,
+    #080c14 0%,
+    #0f1520 30%,
+    #1a1a10 65%,
+    #2a1a08 85%,
+    #160a04 100%
+  );
+}
+
+.ts-ground {
+  position   : absolute;
+  bottom     : 0;
+  left       : 0;
+  right      : 0;
+  height     : var(--stage-bottom);
+  background : linear-gradient(to top, #0a0804, #12100a, transparent);
+  z-index    : 4;
+}
+
+.ts-fog {
+  position       : absolute;
+  inset          : 0;
+  background     : radial-gradient(
+    ellipse 120% 60% at 50% 100%,
+    rgba(200, 180, 140, 0.18) 0%,
+    rgba(40, 30, 20, 0.5) 50%,
+    transparent 100%
+  );
+  pointer-events : none;
+  z-index        : 3;
+}
+
+.ts-grain {
+  position         : absolute;
+  inset            : -20%;
+  width            : 140%;
+  height           : 140%;
+  background-image : url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity          : 0.04;
+  z-index          : 10;
+  pointer-events   : none;
+  animation        : grain-ts 0.1s steps(1) infinite;
+}
+@keyframes grain-ts {
+  0%  { transform: translate(0, 0); }
+  25% { transform: translate(-2%, 3%); }
+  75% { transform: translate(2%, -2%); }
+}
+
+.ts-header {
+  position        : absolute;
+  top             : 5vh;
+  left            : 0;
+  right           : 0;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  gap             : 2rem;
+  z-index         : 8;
+  opacity         : 0;
+  text-align      : center;
+}
+.ts-header-rule {
+  flex       : 0 0 80px;
+  height     : 1px;
+  background : linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity    : 0.5;
+}
+.ts-header-eyebrow {
+  font-family    : var(--f-cinzel);
+  font-size      : clamp(0.5rem, 0.9vw, 0.72rem);
+  letter-spacing : 0.4em;
+  text-transform : uppercase;
+  color          : var(--gold);
+  opacity        : 0.8;
+  margin-bottom  : 0.35rem;
+}
+.ts-header-title {
+  font-family    : var(--f-display);
+  font-weight    : 900;
+  font-size      : clamp(1.1rem, 3vw, 2.6rem);
+  color          : var(--white);
+  letter-spacing : 0.04em;
+  text-shadow    : 0 0 60px rgba(155, 26, 26, 0.4);
+}
+
+.ts-stage {
+  position        : absolute;
+  bottom          : var(--stage-bottom);
+  left            : 0;
+  right           : 0;
+  display         : flex;
+  align-items     : flex-end;
+  justify-content : center;
+  gap             : clamp(0.8rem, 3vw, 4rem);
+  padding         : 0 3vw;
+  z-index         : 5;
+}
+
+.ts-titan-slot {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  position       : relative;
+  flex-shrink    : 0;
+}
+
+.ts-figure {
+  position         : relative;
+  display          : flex;
+  align-items      : flex-end;
+  justify-content  : center;
+  overflow         : visible;
+  will-change      : transform, filter, opacity;
+}
+
+.ts-figure-img {
+  object-fit      : contain;
+  object-position : bottom center;
+  display         : block;
+  width           : auto;
+  max-width       : none;
+  user-select     : none;
+  -webkit-user-drag : none;
+
+  /* The glow lives on the image, not on .ts-figure: GSAP writes an inline
+     `filter` on .ts-figure for the reveal animation and would wipe it out. */
+  filter          :
+    drop-shadow(0 0 18px color-mix(in srgb, var(--color) 35%, transparent))
+    drop-shadow(0 0 60px color-mix(in srgb, var(--color) 15%, transparent));
+  transition      : filter 0.4s;
+}
+.ts-titan-slot:hover .ts-figure-img {
+  filter :
+    drop-shadow(0 0 30px color-mix(in srgb, var(--color) 65%, transparent))
+    drop-shadow(0 0 80px color-mix(in srgb, var(--color) 30%, transparent));
+}
+
+.ts-measure-line {
+  position   : absolute;
+  right      : -6px;
+  bottom     : 0;
+  width      : 1px;
+  background : linear-gradient(to top, var(--color), transparent);
+  opacity    : 0.35;
+}
+.ts-measure-line::before {
+  content    : '';
+  position   : absolute;
+  top        : 0;
+  left       : -3px;
+  width      : 7px;
+  height     : 1px;
+  background : var(--color);
+}
+.ts-measure-line::after {
+  content    : '';
+  position   : absolute;
+  bottom     : 0;
+  left       : -3px;
+  width      : 7px;
+  height     : 1px;
+  background : var(--color);
+}
+
+.ts-label {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  text-align     : center;
+  gap            : 2px;
+  margin-top     : 10px;
+  opacity        : 0;
+  max-width      : clamp(60px, 10vw, 130px);
+}
+.ts-label-height {
+  font-family    : var(--f-body);
+  font-style     : italic;
+  font-size      : clamp(0.5rem, 0.9vw, 0.78rem);
+  color          : var(--color);
+  letter-spacing : 0.05em;
+}
+.ts-label-name {
+  font-family    : var(--f-cinzel);
+  font-weight    : 700;
+  font-size      : clamp(0.5rem, 0.85vw, 0.72rem);
+  letter-spacing : 0.18em;
+  text-transform : uppercase;
+  color          : var(--bone);
+}
+.ts-label-desc {
+  font-family : var(--f-body);
+  font-style  : italic;
+  font-size   : clamp(0.38rem, 0.65vw, 0.6rem);
+  color       : var(--dust);
+  line-height : 1.4;
+  margin-top  : 3px;
+}
+@media (max-width: 700px) {
+  .ts-label-desc { display: none; }
+}
+
+/* ── Wall Maria reference ────────────────────── */
+.ts-wall-line {
+  position   : absolute;
+  left       : 0;
+  right      : 0;
+  bottom     : calc(var(--stage-bottom) + var(--wall-h));
+  height     : 1px;
+  background : repeating-linear-gradient(
+    90deg,
+    rgba(196, 164, 80, 0.25) 0px,
+    rgba(196, 164, 80, 0.25) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  z-index    : 6;
+}
+.ts-wall-label {
+  position       : absolute;
+  right          : 4vw;
+  top            : -18px;
+  font-family    : var(--f-cinzel);
+  font-size      : clamp(0.45rem, 0.75vw, 0.62rem);
+  letter-spacing : 0.2em;
+  color          : rgba(196, 164, 80, 0.55);
+  text-transform : uppercase;
+}
+
+/* ── Responsive ─────────────────────────────── */
+@media (max-width: 480px) {
+  .ts-sticky {
+    --stage-bottom : 10vh;
+  }
+  .ts-stage {
+    gap    : 0.6rem;
+    padding: 0 2vw;
+  }
+  .ts-header { gap: 0.8rem; }
+  .ts-header-rule { flex: 0 0 30px; }
+}

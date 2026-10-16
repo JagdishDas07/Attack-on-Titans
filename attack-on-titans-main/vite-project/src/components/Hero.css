@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap');
+
+:root {
+  --void  : #06060a;
+  --bone  : #d9d4c8;
+  --dust  : #8a8278;
+  --red   : #b82020;
+  --gold  : #c4a450;
+  --white : #f0ece4;
+
+  --f-display : 'Cinzel Decorative', serif;
+  --f-cinzel  : 'Cinzel', serif;
+  --f-body    : 'IM Fell English', serif;
+}
+
+.hero {
+  height : 600vh; 
+  position: relative;
+}
+
+.hero__sticky {
+  position : sticky;
+  top      : 0;
+  width    : 100%;
+  height   : 100vh;
+  overflow : hidden;
+  background: var(--void);
+}
+
+.hero__video {
+  position   : absolute;
+  inset      : 0;
+  width      : 100%;
+  height     : 100%;
+  object-fit : cover;
+  pointer-events: none;
+}
+
+.hero__overlay {
+  position  : absolute;
+  inset     : 0;
+  background: var(--void);
+  opacity   : 0.55;
+  z-index   : 1;
+  pointer-events: none;
+}
+
+.hero__grain {
+  position : absolute;
+  inset    : -30%;
+  width    : 160%;
+  height   : 160%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity  : 0.04;
+  z-index  : 2;
+  pointer-events: none;
+  animation: grain 0.1s steps(1) infinite;
+}
+@keyframes grain {
+  0%  { transform: translate(0,0); }
+  25% { transform: translate(-2%,3%); }
+  50% { transform: translate(3%,-2%); }
+  75% { transform: translate(-1%,1%); }
+}
+
+.hero__chapter {
+  position  : absolute;
+  inset     : 0;
+  display   : flex;
+  flex-direction: column;
+  z-index   : 10;
+  pointer-events: none;
+}
+
+.hero__ch1 {
+  justify-content : flex-end;
+  padding         : 0 8vw 12vh;
+}
+
+.hero__eyebrow {
+  display    : flex;
+  align-items: center;
+  gap        : 0.8rem;
+  margin-bottom: 1.6rem;
+  opacity    : 0.65;
+}
+.hero__rule {
+  flex      : 0 0 36px;
+  height    : 1px;
+  background: var(--gold);
+}
+.hero__eyebrow-txt {
+  font-family   : var(--f-cinzel);
+  font-size     : clamp(0.5rem, 0.85vw, 0.72rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color         : var(--gold);
+}
+
+.hero__ch1-title {
+  font-family : var(--f-display);
+  font-weight : 900;
+  font-size   : clamp(2.8rem, 8vw, 9rem);
+  line-height : 1.0;
+  color       : var(--white);
+  text-shadow : 0 0 80px rgba(184,32,32,.5), 0 4px 30px rgba(0,0,0,.8);
+  opacity     : 0;   
+}
+.hero__ch1-title em {
+  font-style : italic;
+  color      : var(--red);
+}
+.hero__ch1-title span {
+  display   : block;
+  font-size : 0.55em;
+  color     : var(--bone);
+  font-weight: 400;
+  margin-top: 0.15em;
+}
+
+.hero__ch1-sub {
+  font-family : var(--f-body);
+  font-style  : italic;
+  font-size   : clamp(0.85rem, 1.3vw, 1.15rem);
+  color       : var(--dust);
+  margin-top  : 1.2rem;
+  max-width   : 48ch;
+  line-height : 1.7;
+  opacity     : 0;
+}
+
+
+.hero__ch2 {
+  justify-content : center;
+  align-items     : center;
+  text-align      : center;
+}
+
+.hero__ch2-title {
+  font-family   : var(--f-cinzel);
+  font-weight   : 700;
+  font-size     : clamp(1.2rem, 3.5vw, 4rem);
+  letter-spacing: 0.2em;
+  color         : var(--bone);
+  text-transform: uppercase;
+  text-shadow   : 0 0 100px rgba(184,32,32,.35);
+  opacity       : 0;
+}
+.hero__ch2-sub {
+  font-family : var(--f-body);
+  font-style  : italic;
+  font-size   : clamp(0.8rem, 1.2vw, 1.05rem);
+  color       : var(--red);
+  margin-top  : 1rem;
+  letter-spacing: 0.1em;
+  opacity     : 0;
+}
+
+
+.hero__ch3 {
+  justify-content : center;
+  padding-left    : 8vw;
+}
+
+.hero__ch3-title {
+  font-family : var(--f-display);
+  font-weight : 900;
+  font-size   : clamp(4rem, 13vw, 15rem);
+  line-height : 0.88;
+  color       : var(--white);
+  text-shadow : 0 0 160px rgba(196,164,80,.3), 0 8px 60px rgba(0,0,0,.9);
+  opacity     : 0;
+}
+.hero__ch3-title span {
+  display            : block;
+  -webkit-text-stroke: 2px var(--white);
+  color              : transparent;
+  font-size          : 0.7em;
+  text-shadow        : none;
+}
+
+.hero__ch3-sub {
+  font-family  : var(--f-body);
+  font-style   : italic;
+  font-size    : clamp(0.85rem, 1.4vw, 1.25rem);
+  color        : var(--gold);
+  margin-top   : 2rem;
+  border-left  : 2px solid var(--red);
+  padding-left : 1.2rem;
+  letter-spacing: 0.08em;
+  opacity      : 0;
+}
+
+.hero__scroll-hint {
+  position  : absolute;
+  bottom    : 5vh;
+  left      : 50%;
+  transform : translateX(-50%);
+  z-index   : 20;
+}
+.hero__scroll-hint span {
+  display   : block;
+  width     : 1px;
+  height    : 56px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  margin    : auto;
+  animation : drop 1.6s ease-in infinite;
+}
+@keyframes drop {
+  from { transform: scaleY(0); transform-origin: top; opacity: 1; }
+  to   { transform: scaleY(1); transform-origin: top; opacity: 0; }
+}
+
+@media (max-width: 640px) {
+  .hero__ch1, .hero__ch3 { padding-inline: 6vw; }
+  .hero__ch3-title span  { -webkit-text-stroke-width: 1px; }
+}
