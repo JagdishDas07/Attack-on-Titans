@@ -1,50 +1,66 @@
-Attack on Titan — Beyond the Walls
+# Attack on Titan — Beyond the Walls
 
-An interactive, animation-driven exploration of the Attack on Titan universe — the story, the three walls, and a true-to-scale comparison of every titan. Built with React 19, Vite, and GSAP.
+An interactive, animation-driven exploration of the *Attack on Titan* universe — the story, the three walls, and a true-to-scale comparison of every titan. Built with React 19, Vite, and GSAP.
 
-Tech Stack
-React 19 — UI library
-Vite — dev server & build tool
-GSAP — scroll/timeline animations
-ESLint — linting with React Hooks & React Refresh rules
-Getting Started
-Prerequisites
-Node.js (LTS recommended)
-npm (comes with Node.js)
-Installation
-bash
+## Tech Stack
+
+- **[React 19](https://react.dev/)** — UI library
+- **[Vite](https://vite.dev/)** — dev server & build tool
+- **[GSAP](https://gsap.com/)** — scroll/timeline animations
+- **ESLint** — linting with React Hooks & React Refresh rules
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (LTS recommended)
+- npm (comes with Node.js)
+
+### Installation
+
+```bash
 npm install
-Development
+```
+
+### Development
 
 Start the local dev server with hot module replacement:
 
-bash
+```bash
 npm run dev
+```
 
-The app will be available at the URL printed in your terminal (typically http://localhost:5173).
+The app will be available at the URL printed in your terminal (typically `http://localhost:5173`).
 
-Build
+### Build
 
 Create a production build:
 
-bash
+```bash
 npm run build
+```
 
-Output is written to the dist/ folder.
+Output is written to the `dist/` folder.
 
-Preview
+### Preview
 
 Preview the production build locally:
 
-bash
+```bash
 npm run preview
-Lint
+```
+
+### Lint
 
 Run ESLint across the project:
 
-bash
+```bash
 npm run lint
-Project Structure
+```
+
+## Project Structure
+
+```
 .
 ├── index.html          # HTML entry point
 ├── src/
@@ -52,51 +68,17 @@ Project Structure
 ├── vite.config.js       # Vite configuration
 ├── eslint.config.js     # ESLint configuration
 └── package.json
-Scripts
-Script	Description
-dev	Start the Vite dev server
-build	Build the app for production
-lint	Run ESLint
-preview	Preview the production build
-License
+```
 
-This project is a fan-made, non-commercial tribute. Attack on Titan and all related characters and imagery are property of their respective owners (Kodansha / Hajime Isayama).
+## Scripts
 
-Content
-package-lock.json
+| Script    | Description                        |
+|-----------|-------------------------------------|
+| `dev`     | Start the Vite dev server           |
+| `build`   | Build the app for production        |
+| `lint`    | Run ESLint                          |
+| `preview` | Preview the production build        |
 
-JSON
+## License
 
-.gitignore
-
-GITIGNORE
-
-vite.config.js
-
-8 lines
-
-JS
-
-README.md
-
-17 lines
-
-MD
-
-package.json
-
-29 lines
-
-JSON
-
-index.html
-
-19 lines
-
-HTML
-
-eslint.config.js
-
-22 lines
-
-JS
+This project is a fan-made, non-commercial tribute. *Attack on Titan* and all related characters and imagery are property of their respective owners (Jagdish).
